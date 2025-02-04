@@ -35,7 +35,7 @@ const App = () => {
           return await response.json();
         })
       );
-      setJobStories(details);
+      setJobStories((prevStories) => [...prevStories, ...details]);
     } catch (error) {
       setError(error.message);
     } finally {
@@ -57,7 +57,7 @@ const App = () => {
   return (
     <div>
       <h1>Job Details only the title</h1>
-      <p>Showing {page * 5 + 1} - {page * 5 + jobStories.length}</p>
+      <p>Total job stories: {jobStories.length}</p>
       <ul>
         {jobStories.map((story) => (
           <li key={story.id}>{story.title}</li>
